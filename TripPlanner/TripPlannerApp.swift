@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import CoreData
 
 @main
 struct TripPlannerApp: App {
+    let persistenceController = PersistenceController.shared
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RegisterView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+
         }
     }
 }

@@ -6,6 +6,22 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		66BC6C722E6DC27D0019DE47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66BC6C6E2E6DC27D0019DE47 /* Assets.xcassets */; };
+		66BC6C732E6DC27D0019DE47 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BC6C6F2E6DC27D0019DE47 /* HomeView.swift */; };
+		66BC6C742E6DC27D0019DE47 /* TripPlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BC6C702E6DC27D0019DE47 /* TripPlannerApp.swift */; };
+		66BC6C7B2E6DC3100019DE47 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BC6C7A2E6DC3100019DE47 /* CoreData.swift */; };
+		66BC6C7E2E6DC35D0019DE47 /* QuickActionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BC6C7D2E6DC35D0019DE47 /* QuickActionCard.swift */; };
+		66BC6C802E6DC3D60019DE47 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BC6C7F2E6DC3D60019DE47 /* LoginView.swift */; };
+		66BC6C822E6DC3EE0019DE47 /* RegisterVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BC6C812E6DC3EE0019DE47 /* RegisterVIew.swift */; };
+		66BC6C8D2E6DC6710019DE47 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66BC6C8C2E6DC6710019DE47 /* Images.xcassets */; };
+		66BC6C902E6DCD4C0019DE47 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66BC6C8E2E6DCD4C0019DE47 /* Model.xcdatamodeld */; };
+		66BC6C932E6DCDDD0019DE47 /* UserEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BC6C912E6DCDDD0019DE47 /* UserEntity+CoreDataClass.swift */; };
+		66BC6C942E6DCDDD0019DE47 /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BC6C922E6DCDDD0019DE47 /* UserEntity+CoreDataProperties.swift */; };
+		66BC6C952E6DCDDD0019DE47 /* UserEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BC6C912E6DCDDD0019DE47 /* UserEntity+CoreDataClass.swift */; };
+		66BC6C962E6DCDDD0019DE47 /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BC6C922E6DCDDD0019DE47 /* UserEntity+CoreDataProperties.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		66BC6C522E6DC00A0019DE47 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,14 +43,20 @@
 		66BC6C442E6DC0070019DE47 /* TripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66BC6C512E6DC00A0019DE47 /* TripPlannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripPlannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66BC6C5B2E6DC00A0019DE47 /* TripPlannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripPlannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66BC6C6E2E6DC27D0019DE47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		66BC6C6F2E6DC27D0019DE47 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		66BC6C702E6DC27D0019DE47 /* TripPlannerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPlannerApp.swift; sourceTree = "<group>"; };
+		66BC6C7A2E6DC3100019DE47 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+		66BC6C7D2E6DC35D0019DE47 /* QuickActionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActionCard.swift; sourceTree = "<group>"; };
+		66BC6C7F2E6DC3D60019DE47 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		66BC6C812E6DC3EE0019DE47 /* RegisterVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVIew.swift; sourceTree = "<group>"; };
+		66BC6C8C2E6DC6710019DE47 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		66BC6C8F2E6DCD4C0019DE47 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		66BC6C912E6DCDDD0019DE47 /* UserEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		66BC6C922E6DCDDD0019DE47 /* UserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		66BC6C462E6DC0070019DE47 /* TripPlanner */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = TripPlanner;
-			sourceTree = "<group>";
-		};
 		66BC6C542E6DC00A0019DE47 /* TripPlannerTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = TripPlannerTests;
@@ -75,7 +97,7 @@
 		66BC6C3B2E6DC0070019DE47 = {
 			isa = PBXGroup;
 			children = (
-				66BC6C462E6DC0070019DE47 /* TripPlanner */,
+				66BC6C712E6DC27D0019DE47 /* TripPlanner */,
 				66BC6C542E6DC00A0019DE47 /* TripPlannerTests */,
 				66BC6C5E2E6DC00A0019DE47 /* TripPlannerUITests */,
 				66BC6C452E6DC0070019DE47 /* Products */,
@@ -92,6 +114,72 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		66BC6C712E6DC27D0019DE47 /* TripPlanner */ = {
+			isa = PBXGroup;
+			children = (
+				66BC6C702E6DC27D0019DE47 /* TripPlannerApp.swift */,
+				66BC6C7C2E6DC33E0019DE47 /* Componants */,
+				66BC6C752E6DC2810019DE47 /* CoreData */,
+				66BC6C792E6DC2B90019DE47 /* Resources */,
+				66BC6C772E6DC29B0019DE47 /* viewModel */,
+				66BC6C762E6DC2880019DE47 /* Model */,
+				66BC6C782E6DC2A60019DE47 /* View */,
+			);
+			path = TripPlanner;
+			sourceTree = "<group>";
+		};
+		66BC6C752E6DC2810019DE47 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				66BC6C7A2E6DC3100019DE47 /* CoreData.swift */,
+				66BC6C8E2E6DCD4C0019DE47 /* Model.xcdatamodeld */,
+				66BC6C912E6DCDDD0019DE47 /* UserEntity+CoreDataClass.swift */,
+				66BC6C922E6DCDDD0019DE47 /* UserEntity+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		66BC6C762E6DC2880019DE47 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		66BC6C772E6DC29B0019DE47 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		66BC6C782E6DC2A60019DE47 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				66BC6C812E6DC3EE0019DE47 /* RegisterVIew.swift */,
+				66BC6C7F2E6DC3D60019DE47 /* LoginView.swift */,
+				66BC6C6F2E6DC27D0019DE47 /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		66BC6C792E6DC2B90019DE47 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				66BC6C6E2E6DC27D0019DE47 /* Assets.xcassets */,
+				66BC6C8C2E6DC6710019DE47 /* Images.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		66BC6C7C2E6DC33E0019DE47 /* Componants */ = {
+			isa = PBXGroup;
+			children = (
+				66BC6C7D2E6DC35D0019DE47 /* QuickActionCard.swift */,
+			);
+			path = Componants;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +194,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				66BC6C462E6DC0070019DE47 /* TripPlanner */,
 			);
 			name = TripPlanner;
 			packageProductDependencies = (
@@ -212,6 +297,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66BC6C722E6DC27D0019DE47 /* Assets.xcassets in Resources */,
+				66BC6C8D2E6DC6710019DE47 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +323,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66BC6C732E6DC27D0019DE47 /* HomeView.swift in Sources */,
+				66BC6C822E6DC3EE0019DE47 /* RegisterVIew.swift in Sources */,
+				66BC6C7E2E6DC35D0019DE47 /* QuickActionCard.swift in Sources */,
+				66BC6C902E6DCD4C0019DE47 /* Model.xcdatamodeld in Sources */,
+				66BC6C7B2E6DC3100019DE47 /* CoreData.swift in Sources */,
+				66BC6C802E6DC3D60019DE47 /* LoginView.swift in Sources */,
+				66BC6C952E6DCDDD0019DE47 /* UserEntity+CoreDataClass.swift in Sources */,
+				66BC6C962E6DCDDD0019DE47 /* UserEntity+CoreDataProperties.swift in Sources */,
+				66BC6C742E6DC27D0019DE47 /* TripPlannerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +339,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66BC6C932E6DCDDD0019DE47 /* UserEntity+CoreDataClass.swift in Sources */,
+				66BC6C942E6DCDDD0019DE47 /* UserEntity+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,6 +656,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		66BC6C8E2E6DCD4C0019DE47 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				66BC6C8F2E6DCD4C0019DE47 /* Model.xcdatamodel */,
+			);
+			currentVersion = 66BC6C8F2E6DCD4C0019DE47 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 66BC6C3C2E6DC0070019DE47 /* Project object */;
 }
