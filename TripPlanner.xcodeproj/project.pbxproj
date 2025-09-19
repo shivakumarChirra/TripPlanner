@@ -14,6 +14,7 @@
 		6649748D2E7D9791000C4186 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6649748C2E7D9791000C4186 /* GoogleService-Info.plist */; };
 		664974902E7D98D2000C4186 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6649748F2E7D98D2000C4186 /* Authentication.swift */; };
 		664974932E7D990A000C4186 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664974922E7D990A000C4186 /* User.swift */; };
+		6670B5BC2E7DCF03005D17FE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6670B5BB2E7DCF03005D17FE /* LoginViewModel.swift */; };
 		66BC6C722E6DC27D0019DE47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66BC6C6E2E6DC27D0019DE47 /* Assets.xcassets */; };
 		66BC6C732E6DC27D0019DE47 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BC6C6F2E6DC27D0019DE47 /* HomeView.swift */; };
 		66BC6C742E6DC27D0019DE47 /* TripPlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BC6C702E6DC27D0019DE47 /* TripPlannerApp.swift */; };
@@ -51,6 +52,7 @@
 		6649748C2E7D9791000C4186 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6649748F2E7D98D2000C4186 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		664974922E7D990A000C4186 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6670B5BB2E7DCF03005D17FE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		66BC6C442E6DC0070019DE47 /* TripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66BC6C512E6DC00A0019DE47 /* TripPlannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripPlannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66BC6C5B2E6DC00A0019DE47 /* TripPlannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripPlannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				664974832E7D923A000C4186 /* RegisterViewModel.swift */,
+				6670B5BB2E7DCF03005D17FE /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				66BC6C7B2E6DC3100019DE47 /* CoreData.swift in Sources */,
 				66BC6C802E6DC3D60019DE47 /* LoginView.swift in Sources */,
 				66BC6C952E6DCDDD0019DE47 /* UserEntity+CoreDataClass.swift in Sources */,
+				6670B5BC2E7DCF03005D17FE /* LoginViewModel.swift in Sources */,
 				664974932E7D990A000C4186 /* User.swift in Sources */,
 				66BC6C962E6DCDDD0019DE47 /* UserEntity+CoreDataProperties.swift in Sources */,
 				66BC6C742E6DC27D0019DE47 /* TripPlannerApp.swift in Sources */,

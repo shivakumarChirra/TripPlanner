@@ -6,131 +6,112 @@
 //
 import SwiftUI
 import CoreData
-
 struct LoginView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
-    @State private var username: String = ""
-    @State private var password: String = ""
-    @State private var isPasswordVisible: Bool = false
-    @State private var showAlert: Bool = false
-    @State private var alertMessage: String = ""
-    @State private var isLoggedIn: Bool = false
+    @StateObject var viewModel = LoginViewModel()
     
     var body: some View {
         NavigationStack {
             ZStack {
-                // Background with glossy gradient
-                LinearGradient(colors: [.blue.opacity(0.7), .purple.opacity(0.6), .black.opacity(0.4)],
+                // Background gradient
+                LinearGradient(colors: [.indigo.opacity(0.8), .purple.opacity(0.6), .black.opacity(0.7)],
                                startPoint: .topLeading,
                                endPoint: .bottomTrailing)
                     .ignoresSafeArea()
                 
-                VStack(spacing: 24) {
-                    Text("Trip Planner")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundStyle(
-                            LinearGradient(colors: [.white, .blue],
-                                           startPoint: .leading,
-                                           endPoint: .trailing)
-                        )
-                        .padding(.top, 60)
-                    
+                VStack(spacing: 28) {
                     Spacer()
                     
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Username").formLabel()
+                    // App title
+                    VStack(spacing: 8) {
+                        Text("Trip Planner")
+                            .font(.system(size: 38, weight: .bold, design: .rounded))
+                            .foregroundStyle(.linearGradient(colors: [.white, .blue],
+                                                             startPoint: .leading,
+                                                             endPoint: .trailing))
                         
-                        TextField("Enter username", text: $username)
-                            .padding()
-                            .background(RoundedRectangle(cornerRadius: 12).fill(.white.opacity(0.1)))
-                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(.white.opacity(0.2)))
-                            .foregroundColor(.white)
-                            .textInputAutocapitalization(.never)
-                            .autocorrectionDisabled()
+                        Text("Plan your adventures smarter")
+                            .font(.subheadline)
+                            .foregroundColor(.white.opacity(0.7))
                     }
+                    .padding(.bottom, 40)
                     
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Password").formLabel()
-                        
-                        HStack {
-                            if isPasswordVisible {
-                                TextField("Enter password", text: $password)
+                    // Glassy card
+                    if #available(iOS 16.0, *) {
+                        VStack(spacing: 20) {
+                            // Username
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text("Username").formLabel()
+                                TextField("Enter username", text: $viewModel.username)
+                                    .padding()
                                     .foregroundColor(.white)
-                                    .textInputAutocapitalization(.never)
+                                    .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14))
                                     .autocorrectionDisabled()
-                            } else {
-                                SecureField("Enter password", text: $password)
-                                    .foregroundColor(.white)
                                     .textInputAutocapitalization(.never)
-                                    .autocorrectionDisabled()
                             }
                             
-                            Button {
-                                isPasswordVisible.toggle()
-                            } label: {
-                                Image(systemName: isPasswordVisible ? "eye.slash.fill" : "eye.fill")
-                                    .foregroundColor(.white.opacity(0.7))
+                            // Password
+                            VStack(alignment: .leading, spacing: 6) {
+                                Text("Password").formLabel()
+                                HStack {
+                                    if viewModel.isPasswordVisible {
+                                        TextField("Enter password", text: $viewModel.password)
+                                            .foregroundColor(.white)
+                                    } else {
+                                        SecureField("Enter password", text: $viewModel.password)
+                                            .foregroundColor(.white)
+                                    }
+                                    Button {
+                                        withAnimation(.easeInOut) {
+                                            viewModel.isPasswordVisible.toggle()
+                                        }
+                                    } label: {
+                                        Image(systemName: viewModel.isPasswordVisible ? "eye.slash.fill" : "eye.fill")
+                                            .foregroundColor(.white.opacity(0.7))
+                                    }
+                                }
+                                .padding()
+                                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14))
                             }
+                            
+                            // Login button
+                            Button(action: viewModel.loginUser) {
+                                if viewModel.isLoading {
+                                    ProgressView()
+                                        .tint(.white)
+                                        .frame(maxWidth: .infinity)
+                                        .padding()
+                                } else {
+                                    Text("Login")
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                        .frame(maxWidth: .infinity)
+                                        .padding()
+                                }
+                            }
+                            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14))
+                            .shadow(radius: 8)
+                            .padding(.top, 6)
+                            .disabled(viewModel.isLoading) // prevent double-taps
                         }
                         .padding()
-                        .background(RoundedRectangle(cornerRadius: 12).fill(.white.opacity(0.1)))
-                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(.white.opacity(0.2)))
+                        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 25))
+                        .padding(.horizontal, 28)
                     }
-                    
-                    Button(action: loginUser) {
-                        Text("Login")
-                            .foregroundColor(.white)
-                            .fontWeight(.semibold)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(LinearGradient(colors: [.blue, .purple],
-                                                       startPoint: .leading,
-                                                       endPoint: .trailing))
-                            .cornerRadius(12)
-                            .shadow(radius: 6)
-                    }
-                    .padding(.top, 10)
                     
                     Spacer()
                     
-                    NavigationLink(destination: HomeView(), isActive: $isLoggedIn) {
+                    NavigationLink(destination: HomeView(),
+                                   isActive: $viewModel.isLoggedIn) {
                         EmptyView()
                     }
                 }
-                .padding()
             }
-            .alert(isPresented: $showAlert) {
+            .alert(isPresented: $viewModel.showAlert) {
                 Alert(title: Text("Login"),
-                      message: Text(alertMessage),
+                      message: Text(viewModel.alertMessage),
                       dismissButton: .default(Text("OK")))
             }
-        }
-    }
-    
-    private func loginUser() {
-        if username.isEmpty || password.isEmpty {
-            alertMessage = "Please fill all fields."
-            showAlert = true
-            return
-        }
-        
-        let request: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "name == %@ AND password == %@", username, password)
-        request.fetchLimit = 1
-        
-        do {
-            let result = try viewContext.fetch(request)
-            if let _ = result.first {
-                isLoggedIn = true
-            } else {
-                alertMessage = "Invalid username or password"
-                showAlert = true
-            }
-        } catch {
-            alertMessage = "Login failed: \(error.localizedDescription)"
-            showAlert = true
         }
     }
 }
