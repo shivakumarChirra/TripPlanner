@@ -10,15 +10,14 @@ import CoreData
 
 struct RegisterView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @StateObject private var viewModel: RegisterViewModel
+
     
-    @State private var username: String = ""
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var isPasswordVisible: Bool = false
-    @State private var isRegistered: Bool = false
-    @State private var showAlert: Bool = false
-    @State private var alertMessage: String = ""
     
+    init(viewModel: RegisterViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -29,43 +28,49 @@ struct RegisterView: View {
                 
                 VStack(spacing: 30) {
                     
+                    // Header
                     VStack(spacing: 6) {
                         Text("Create Account")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
-                        Text("Start planning your dream trips ")
+                        Text("Start planning your dream trips")
                             .font(.subheadline)
                             .foregroundColor(.white.opacity(0.7))
                     }
                     .padding(.top, 40)
                     
+                    // Form
                     VStack(spacing: 20) {
                         VStack(alignment: .leading) {
                             Text("Name").formLabel()
-                            inputField(icon: "person.fill", placeholder: "Username", text: $username)
+                            inputField(icon: "person.fill",
+                                       placeholder: "Username",
+                                       text: $viewModel.username)
                         }
                         VStack(alignment: .leading) {
                             Text("E-Mail").formLabel()
-                            inputField(icon: "envelope.fill", placeholder: "Email", text: $email)
+                            inputField(icon: "envelope.fill",
+                                       placeholder: "Email",
+                                       text: $viewModel.email)
                                 .keyboardType(.emailAddress)
                         }
                         VStack(alignment: .leading) {
                             Text("Password").formLabel()
                             HStack {
-                                if isPasswordVisible {
-                                    TextField("Password", text: $password)
+                                if viewModel.isPasswordVisible {
+                                    TextField("Password", text: $viewModel.password)
                                         .foregroundColor(.white)
                                         .autocorrectionDisabled()
                                         .textInputAutocapitalization(.never)
                                 } else {
-                                    SecureField("Password", text: $password)
+                                    SecureField("Password", text: $viewModel.password)
                                         .foregroundColor(.white)
                                         .autocorrectionDisabled()
                                         .textInputAutocapitalization(.never)
                                 }
-                                Button { isPasswordVisible.toggle() } label: {
-                                    Image(systemName: isPasswordVisible ? "eye.slash.fill" : "eye.fill")
+                                Button { viewModel.isPasswordVisible.toggle() } label: {
+                                    Image(systemName: viewModel.isPasswordVisible ? "eye.slash.fill" : "eye.fill")
                                         .foregroundColor(.white.opacity(0.7))
                                 }
                             }
@@ -74,7 +79,8 @@ struct RegisterView: View {
                             .overlay(RoundedRectangle(cornerRadius: 15).stroke(.white.opacity(0.15)))
                         }
                         
-                        Button(action: registerUser) {
+                        // Register Button
+                        Button(action: viewModel.registerUser) {
                             Text("Register")
                                 .foregroundColor(.white)
                                 .fontWeight(.semibold)
@@ -101,39 +107,21 @@ struct RegisterView: View {
                     .cornerRadius(20)
                     .padding(.horizontal, 30)
                     
-                    NavigationLink(destination: HomeView(), isActive: $isRegistered) { EmptyView() }
+                    // Navigation after registration
+                    NavigationLink(destination: HomeView(),
+                                   isActive: $viewModel.isRegistered) { EmptyView() }
                 }
             }
-            .alert(isPresented: $showAlert) {
+            .alert(isPresented: $viewModel.showAlert) {
                 Alert(title: Text("Register"),
-                      message: Text(alertMessage),
+                      message: Text(viewModel.alertMessage),
                       dismissButton: .default(Text("OK")))
             }
         }
     }
-    
-    private func registerUser() {
-        if username.isEmpty || email.isEmpty || password.isEmpty {
-            alertMessage = "All fields are required!"
-            showAlert = true
-            return
-        }
-        
-        let newUser = UserEntity(context: viewContext)
-        newUser.name = username
-        newUser.email = email
-        newUser.password = password
-        newUser.createdAt = Date()
-        
-        do {
-            try viewContext.save()
-            isRegistered = true
-        } catch {
-            alertMessage = "Failed to save user: \(error.localizedDescription)"
-            showAlert = true
-        }
-    }
 }
+
+
 
 extension RegisterView {
     func inputField(icon: String, placeholder: String, text: Binding<String>) -> some View {
@@ -152,5 +140,6 @@ extension RegisterView {
 
 
 #Preview {
-    RegisterView()
+    RegisterView(viewModel: RegisterViewModel())
 }
+

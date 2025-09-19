@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		664974842E7D923A000C4186 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664974832E7D923A000C4186 /* RegisterViewModel.swift */; };
+		664974872E7D95EC000C4186 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 664974862E7D95EC000C4186 /* FirebaseAuth */; };
+		664974892E7D95EC000C4186 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 664974882E7D95EC000C4186 /* FirebaseFirestore */; };
+		6649748B2E7D95EC000C4186 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6649748A2E7D95EC000C4186 /* FirebaseStorage */; };
+		6649748D2E7D9791000C4186 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6649748C2E7D9791000C4186 /* GoogleService-Info.plist */; };
+		664974902E7D98D2000C4186 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6649748F2E7D98D2000C4186 /* Authentication.swift */; };
+		664974932E7D990A000C4186 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664974922E7D990A000C4186 /* User.swift */; };
 		66BC6C722E6DC27D0019DE47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66BC6C6E2E6DC27D0019DE47 /* Assets.xcassets */; };
 		66BC6C732E6DC27D0019DE47 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BC6C6F2E6DC27D0019DE47 /* HomeView.swift */; };
 		66BC6C742E6DC27D0019DE47 /* TripPlannerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BC6C702E6DC27D0019DE47 /* TripPlannerApp.swift */; };
@@ -40,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		664974832E7D923A000C4186 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		6649748C2E7D9791000C4186 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6649748F2E7D98D2000C4186 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		664974922E7D990A000C4186 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		66BC6C442E6DC0070019DE47 /* TripPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66BC6C512E6DC00A0019DE47 /* TripPlannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripPlannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66BC6C5B2E6DC00A0019DE47 /* TripPlannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripPlannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +85,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				664974872E7D95EC000C4186 /* FirebaseAuth in Frameworks */,
+				664974892E7D95EC000C4186 /* FirebaseFirestore in Frameworks */,
+				6649748B2E7D95EC000C4186 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +108,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		664974822E7D9222000C4186 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				664974832E7D923A000C4186 /* RegisterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6649748E2E7D97A0000C4186 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				6649748C2E7D9791000C4186 /* GoogleService-Info.plist */,
+				6649748F2E7D98D2000C4186 /* Authentication.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		664974912E7D98FD000C4186 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				664974922E7D990A000C4186 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		66BC6C3B2E6DC0070019DE47 = {
 			isa = PBXGroup;
 			children = (
@@ -118,12 +157,13 @@
 			isa = PBXGroup;
 			children = (
 				66BC6C702E6DC27D0019DE47 /* TripPlannerApp.swift */,
+				664974912E7D98FD000C4186 /* Model */,
+				6649748E2E7D97A0000C4186 /* Authentication */,
 				66BC6C7C2E6DC33E0019DE47 /* Componants */,
 				66BC6C752E6DC2810019DE47 /* CoreData */,
-				66BC6C792E6DC2B90019DE47 /* Resources */,
-				66BC6C772E6DC29B0019DE47 /* viewModel */,
-				66BC6C762E6DC2880019DE47 /* Model */,
+				664974822E7D9222000C4186 /* ViewModel */,
 				66BC6C782E6DC2A60019DE47 /* View */,
+				66BC6C792E6DC2B90019DE47 /* Resources */,
 			);
 			path = TripPlanner;
 			sourceTree = "<group>";
@@ -137,20 +177,6 @@
 				66BC6C922E6DCDDD0019DE47 /* UserEntity+CoreDataProperties.swift */,
 			);
 			path = CoreData;
-			sourceTree = "<group>";
-		};
-		66BC6C762E6DC2880019DE47 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		66BC6C772E6DC29B0019DE47 /* viewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = viewModel;
 			sourceTree = "<group>";
 		};
 		66BC6C782E6DC2A60019DE47 /* View */ = {
@@ -197,6 +223,9 @@
 			);
 			name = TripPlanner;
 			packageProductDependencies = (
+				664974862E7D95EC000C4186 /* FirebaseAuth */,
+				664974882E7D95EC000C4186 /* FirebaseFirestore */,
+				6649748A2E7D95EC000C4186 /* FirebaseStorage */,
 			);
 			productName = TripPlanner;
 			productReference = 66BC6C442E6DC0070019DE47 /* TripPlanner.app */;
@@ -280,6 +309,9 @@
 			);
 			mainGroup = 66BC6C3B2E6DC0070019DE47;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				664974852E7D95EC000C4186 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 66BC6C452E6DC0070019DE47 /* Products */;
 			projectDirPath = "";
@@ -299,6 +331,7 @@
 			files = (
 				66BC6C722E6DC27D0019DE47 /* Assets.xcassets in Resources */,
 				66BC6C8D2E6DC6710019DE47 /* Images.xcassets in Resources */,
+				6649748D2E7D9791000C4186 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,14 +357,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				66BC6C732E6DC27D0019DE47 /* HomeView.swift in Sources */,
+				664974842E7D923A000C4186 /* RegisterViewModel.swift in Sources */,
 				66BC6C822E6DC3EE0019DE47 /* RegisterVIew.swift in Sources */,
 				66BC6C7E2E6DC35D0019DE47 /* QuickActionCard.swift in Sources */,
 				66BC6C902E6DCD4C0019DE47 /* Model.xcdatamodeld in Sources */,
 				66BC6C7B2E6DC3100019DE47 /* CoreData.swift in Sources */,
 				66BC6C802E6DC3D60019DE47 /* LoginView.swift in Sources */,
 				66BC6C952E6DCDDD0019DE47 /* UserEntity+CoreDataClass.swift in Sources */,
+				664974932E7D990A000C4186 /* User.swift in Sources */,
 				66BC6C962E6DCDDD0019DE47 /* UserEntity+CoreDataProperties.swift in Sources */,
 				66BC6C742E6DC27D0019DE47 /* TripPlannerApp.swift in Sources */,
+				664974902E7D98D2000C4186 /* Authentication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +692,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		664974852E7D95EC000C4186 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		664974862E7D95EC000C4186 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 664974852E7D95EC000C4186 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		664974882E7D95EC000C4186 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 664974852E7D95EC000C4186 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		6649748A2E7D95EC000C4186 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 664974852E7D95EC000C4186 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		66BC6C8E2E6DCD4C0019DE47 /* Model.xcdatamodeld */ = {

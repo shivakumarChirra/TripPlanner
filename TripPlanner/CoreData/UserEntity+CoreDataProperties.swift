@@ -36,7 +36,7 @@ extension UserEntity {
         do {
             return try context.fetch(request).first
         } catch {
-            print("⚠️ Failed to fetch user: \(error.localizedDescription)")
+            print("Failed to fetch user: \(error.localizedDescription)")
             return nil
         }
     }
