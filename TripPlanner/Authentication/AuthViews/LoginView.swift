@@ -4,17 +4,25 @@
 //
 //  Created by shivakumar chirra on 07/09/25.
 //
+
+
 import SwiftUI
 import CoreData
+import FirebaseAuth
+import FirebaseFirestore
+
 struct LoginView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @StateObject var viewModel = LoginViewModel()
+    @StateObject private var viewModel: LoginViewModel
+    
+    init(viewModel: LoginViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
         NavigationStack {
             ZStack {
-                // Background gradient
-                LinearGradient(colors: [.indigo.opacity(0.8), .purple.opacity(0.6), .black.opacity(0.7)],
+                LinearGradient(colors: [.indigo.opacity(0.8), .purple.opacity(0.6), .black.opacity(0.2)],
                                startPoint: .topLeading,
                                endPoint: .bottomTrailing)
                     .ignoresSafeArea()
@@ -22,7 +30,6 @@ struct LoginView: View {
                 VStack(spacing: 28) {
                     Spacer()
                     
-                    // App title
                     VStack(spacing: 8) {
                         Text("Trip Planner")
                             .font(.system(size: 38, weight: .bold, design: .rounded))
@@ -36,13 +43,11 @@ struct LoginView: View {
                     }
                     .padding(.bottom, 40)
                     
-                    // Glassy card
                     if #available(iOS 16.0, *) {
                         VStack(spacing: 20) {
-                            // Username
                             VStack(alignment: .leading, spacing: 6) {
-                                Text("Username").formLabel()
-                                TextField("Enter username", text: $viewModel.username)
+                                Text("Email").formLabel()
+                                TextField("Enter email", text: $viewModel.email)
                                     .padding()
                                     .foregroundColor(.white)
                                     .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14))
@@ -50,7 +55,6 @@ struct LoginView: View {
                                     .textInputAutocapitalization(.never)
                             }
                             
-                            // Password
                             VStack(alignment: .leading, spacing: 6) {
                                 Text("Password").formLabel()
                                 HStack {
@@ -74,8 +78,10 @@ struct LoginView: View {
                                 .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14))
                             }
                             
-                            // Login button
-                            Button(action: viewModel.loginUser) {
+                            // Login Button
+                            Button(action: {
+                                viewModel.loginUser()
+                            }) {
                                 if viewModel.isLoading {
                                     ProgressView()
                                         .tint(.white)
@@ -92,7 +98,20 @@ struct LoginView: View {
                             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14))
                             .shadow(radius: 8)
                             .padding(.top, 6)
-                            .disabled(viewModel.isLoading) // prevent double-taps
+                            .disabled(viewModel.isLoading || viewModel.isLoginDisabled)
+                            
+                            // Show Forgot Password if login fails 5 times
+                            if viewModel.showForgotButton {
+                                NavigationLink("Forgot Password?", destination: ForgotPasswordView()
+                                                .onDisappear {
+                                                    // Reset login state after sending password reset
+                                                    viewModel.isLoginDisabled = false
+                                                    viewModel.failedAttempts = 0
+                                                    viewModel.showForgotButton = false
+                                                })
+                                .foregroundColor(.red)
+                                .padding(.top, 8)
+                            }
                         }
                         .padding()
                         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 25))
@@ -101,10 +120,16 @@ struct LoginView: View {
                     
                     Spacer()
                     
-                    NavigationLink(destination: HomeView(),
-                                   isActive: $viewModel.isLoggedIn) {
-                        EmptyView()
+                    NavigationLink(destination: MainTabView(),
+                                   isActive: $viewModel.isLoggedIn) { EmptyView() }
+                    
+                    HStack {
+                        Text("Don't have an account?")
+                            .foregroundColor(.white.opacity(0.7))
+                        NavigationLink("Register", destination: RegisterView(viewModel: RegisterViewModel(context: viewContext)))
+                            .foregroundColor(.blue.opacity(0.9))
                     }
+                    .font(.footnote)
                 }
             }
             .alert(isPresented: $viewModel.showAlert) {
@@ -112,10 +137,11 @@ struct LoginView: View {
                       message: Text(viewModel.alertMessage),
                       dismissButton: .default(Text("OK")))
             }
-        }
+        }.navigationBarBackButtonHidden()
     }
 }
 
+
 #Preview {
-    LoginView()
+    LoginView(viewModel: LoginViewModel(context: PersistenceController.preview.container.viewContext))
 }

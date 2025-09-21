@@ -7,9 +7,28 @@
 
 import Foundation
 import CoreData
+import CoreData
 
 struct PersistenceController {
     static let shared = PersistenceController()
+
+    static let preview: PersistenceController = {
+        let controller = PersistenceController(inMemory: true)
+        let viewContext = controller.container.viewContext
+
+        let user = UserEntity(context: viewContext)
+        user.username = "Traveler"
+        user.profileImage = nil
+
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved Core Data error \(nsError), \(nsError.userInfo)")
+        }
+
+        return controller
+    }()
 
     let container: NSPersistentContainer
 
@@ -18,7 +37,7 @@ struct PersistenceController {
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
         }
-        container.loadPersistentStores { description, error in
+        container.loadPersistentStores { _, error in
             if let error = error {
                 fatalError("Core Data store failed: \(error.localizedDescription)")
             }

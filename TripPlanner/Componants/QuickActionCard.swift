@@ -6,14 +6,13 @@
 //
 
 import SwiftUI
-
 struct QuickActionCard: View {
     var icon: String
     var title: String
     var subtitle: String
     
     var body: some View {
-        VStack {
+        VStack(spacing: 8) {
             Image(systemName: icon)
                 .font(.system(size: 30))
                 .foregroundColor(.white)

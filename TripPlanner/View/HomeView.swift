@@ -12,95 +12,77 @@ import CoreData
 struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
- 
     @State private var selectedPhoto: PhotosPickerItem?
     @State private var profileImage: UIImage?
     @State private var username: String = "Traveler"
+    @State private var searchText: String = ""
     
     var body: some View {
-    
-
         ZStack {
+            // Main background gradient
             LinearGradient(colors: [.black.opacity(0.95), .blue.opacity(0.4), .purple.opacity(0.3)],
                            startPoint: .topLeading,
                            endPoint: .bottomTrailing)
                 .ignoresSafeArea()
             
-            VStack(alignment: .leading, spacing: 20) {
-                
-                HStack {
-                    if let profileImage {
-                        Image(uiImage: profileImage)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 60, height: 60)
-                            .clipShape(Circle())
-                            .shadow(radius: 4)
-                    } else {
-                        Circle()
-                            .fill(.ultraThinMaterial)
-                            .frame(width: 60, height: 60)
-                            .overlay(Image(systemName: "person.fill")
-                                .font(.system(size: 30))
-                                .foregroundColor(.white.opacity(0.7)))
-                    }
+            ScrollView {
+                VStack(spacing: 20) {
+                    // Profile + Hot Places section
+                    HomeProfileAndHotPlacesView(profileImage: profileImage,
+                                                username: username,
+                                                searchText: $searchText)
                     
-                    VStack(alignment: .leading) {
-                        Text("Welcome back, \(username)!")
-                            .font(.title2)
-                            .fontWeight(.semibold)
+                    // Quick Actions
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("Quick Actions")
+                            .font(.headline)
                             .foregroundColor(.white)
-                        Text("Ready to plan your next adventure?")
-                            .font(.subheadline)
-                            .foregroundColor(.white.opacity(0.7))
+                            .padding(.horizontal)
+                        
+                        HStack(spacing: 16) {
+                            QuickActionCard(icon: "wand.and.stars", title: "AI Trips", subtitle: "Smart plans")
+                            QuickActionCard(icon: "airplane", title: "My Trips", subtitle: "Your journeys")
+                        }
+                        .padding(.horizontal)
+                        
+                        HStack(spacing: 16) {
+                            QuickActionCard(icon: "dollarsign.circle", title: "Budget", subtitle: "Track expenses")
+                            QuickActionCard(icon: "plus.circle", title: "Add Trip", subtitle: "Create new")
+                        }
+                        .padding(.horizontal)
                     }
-                    
-                    Spacer()
-                    
-                    Image(systemName: "bell.badge")
-                        .font(.title2)
-                        .foregroundColor(.white)
                 }
-                .padding(.horizontal)
-                
-                Text("Quick Actions")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding(.horizontal)
-                
-                HStack {
-                    QuickActionCard(icon: "wand.and.stars", title: "AI Trips", subtitle: "Smart plans")
-                    QuickActionCard(icon: "airplane", title: "My Trips", subtitle: "Your journeys")
-                }
-                .padding(.horizontal)
-                
-                HStack {
-                    QuickActionCard(icon: "dollarsign.circle", title: "Budget", subtitle: "Track expenses")
-                    QuickActionCard(icon: "plus.circle", title: "Add Trip", subtitle: "Create new")
-                }
-                .padding(.horizontal)
-                
-                Spacer()
-                
-                TabView {
-                    Text("Home").tabItem { Label("Home", systemImage: "house.fill") }
-                    Text("Trips").tabItem { Label("Trips", systemImage: "airplane") }
-                    Text("Budget").tabItem { Label("Budget", systemImage: "chart.pie") }
-                    Text("Profile").tabItem { Label("Profile", systemImage: "person") }
-                }
-            }
+                .padding(.vertical)
+            }.navigationBarBackButtonHidden()
         }
+        .navigationBarBackButtonHidden()
         .onAppear {
-            if let user = UserEntity.fetchUser(context: viewContext) {
-                username = user.name ?? "Traveler"
-                if let imageData = user.profileImage {
-                    profileImage = UIImage(data: imageData)
+            loadUserData()
+        }
+    }
+    
+    /// Fetch last registered/logged-in user from Core Data
+    private func loadUserData() {
+        // Attempt to fetch the last user saved in Core Data
+        let request = NSFetchRequest<UserEntity>(entityName: "UserEntity")
+        request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        request.fetchLimit = 1
+        
+        do {
+            if let user = try viewContext.fetch(request).first {
+                username = user.username ?? "Traveler"
+                if let data = user.profileImage {
+                    profileImage = UIImage(data: data)
                 }
             }
+        } catch {
+            print("Failed to fetch user from Core Data:", error.localizedDescription)
         }
     }
 }
 
+// Preview
 #Preview {
     HomeView()
+        .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }

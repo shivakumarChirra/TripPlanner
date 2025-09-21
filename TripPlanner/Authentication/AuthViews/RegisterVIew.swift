@@ -7,13 +7,13 @@
 
 import SwiftUI
 import CoreData
+import FirebaseAuth
+import FirebaseFirestore
 
 struct RegisterView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @StateObject private var viewModel: RegisterViewModel
 
-    
-    
     init(viewModel: RegisterViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
@@ -27,8 +27,6 @@ struct RegisterView: View {
                     .ignoresSafeArea()
                 
                 VStack(spacing: 30) {
-                    
-                    // Header
                     VStack(spacing: 6) {
                         Text("Create Account")
                             .font(.largeTitle)
@@ -40,7 +38,6 @@ struct RegisterView: View {
                     }
                     .padding(.top, 40)
                     
-                    // Form
                     VStack(spacing: 20) {
                         VStack(alignment: .leading) {
                             Text("Name").formLabel()
@@ -79,8 +76,9 @@ struct RegisterView: View {
                             .overlay(RoundedRectangle(cornerRadius: 15).stroke(.white.opacity(0.15)))
                         }
                         
-                        // Register Button
-                        Button(action: viewModel.registerUser) {
+                        Button(action: {
+                            viewModel.registerUser()
+                        }) {
                             Text("Register")
                                 .foregroundColor(.white)
                                 .fontWeight(.semibold)
@@ -97,7 +95,7 @@ struct RegisterView: View {
                         HStack {
                             Text("Already have an account?")
                                 .foregroundColor(.white.opacity(0.7))
-                            NavigationLink("Login", destination: LoginView())
+                            NavigationLink("Login", destination: LoginView(viewModel: LoginViewModel(context: viewContext)))
                                 .foregroundColor(.blue.opacity(0.9))
                         }
                         .font(.footnote)
@@ -107,8 +105,7 @@ struct RegisterView: View {
                     .cornerRadius(20)
                     .padding(.horizontal, 30)
                     
-                    // Navigation after registration
-                    NavigationLink(destination: HomeView(),
+                    NavigationLink(destination: MainTabView(),
                                    isActive: $viewModel.isRegistered) { EmptyView() }
                 }
             }
@@ -117,11 +114,9 @@ struct RegisterView: View {
                       message: Text(viewModel.alertMessage),
                       dismissButton: .default(Text("OK")))
             }
-        }
+        }.navigationBarBackButtonHidden()
     }
 }
-
-
 
 extension RegisterView {
     func inputField(icon: String, placeholder: String, text: Binding<String>) -> some View {
@@ -138,8 +133,6 @@ extension RegisterView {
     }
 }
 
-
 #Preview {
-    RegisterView(viewModel: RegisterViewModel())
+    RegisterView(viewModel: RegisterViewModel(context: PersistenceController.preview.container.viewContext))
 }
-

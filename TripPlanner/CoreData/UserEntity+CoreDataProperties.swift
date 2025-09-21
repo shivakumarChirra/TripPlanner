@@ -16,11 +16,12 @@ extension UserEntity {
         return NSFetchRequest<UserEntity>(entityName: "UserEntity")
     }
 
-    @NSManaged public var name: String?
+    @NSManaged public var username: String?
     @NSManaged public var email: String?
     @NSManaged public var password: String?
     @NSManaged public var createdAt: Date?
     @NSManaged public var profileImage: Data?
+    @NSManaged public var isSynced: Bool
 
 }
 
@@ -41,3 +42,4 @@ extension UserEntity {
         }
     }
 }
+
