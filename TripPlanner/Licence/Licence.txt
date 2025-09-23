@@ -1,0 +1,27 @@
+===============================
+        TriP PLANNER LICENSE
+===============================
+
+Overview:
+---------
+Trip Planner is © 2025 by [Shiva Kumar].
+All rights reserved. This software is intended for personal, educational, or demo purposes only.
+
+Permissions:
+------------
+- You may view and read this code.
+- You may clone or copy this software for personal or educational use.
+
+Restrictions:
+-------------
+- You may NOT modify this LICENSE file.
+- You may NOT distribute, sell, or use this software for commercial purposes.
+- You may NOT remove the copyright notice.
+
+Disclaimer:
+-----------
+This software is provided "as is" without any warranty. The author is not responsible for any damages or issues arising from the use of this software.
+
+===============================
+        END OF LICENSE
+===============================
