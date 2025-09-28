@@ -24,7 +24,7 @@ struct TripPlannerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RootView()
+            NearbyView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

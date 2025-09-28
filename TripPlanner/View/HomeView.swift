@@ -19,7 +19,6 @@ struct HomeView: View {
     
     var body: some View {
         ZStack {
-            // Main background gradient
             LinearGradient(colors: [.black.opacity(0.95), .blue.opacity(0.4), .purple.opacity(0.3)],
                            startPoint: .topLeading,
                            endPoint: .bottomTrailing)
@@ -27,12 +26,11 @@ struct HomeView: View {
             
             ScrollView {
                 VStack(spacing: 20) {
-                    // Profile + Hot Places section
+                        Spacer().frame(height: 100)
                     HomeProfileAndHotPlacesView(profileImage: profileImage,
                                                 username: username,
                                                 searchText: $searchText)
                     
-                    // Quick Actions
                     VStack(alignment: .leading, spacing: 16) {
                         Text("Quick Actions")
                             .font(.headline)
@@ -61,9 +59,7 @@ struct HomeView: View {
         }
     }
     
-    /// Fetch last registered/logged-in user from Core Data
     private func loadUserData() {
-        // Attempt to fetch the last user saved in Core Data
         let request = NSFetchRequest<UserEntity>(entityName: "UserEntity")
         request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
         request.fetchLimit = 1

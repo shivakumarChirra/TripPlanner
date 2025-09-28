@@ -155,7 +155,7 @@ struct HotPlaces: View {
                 ScrollView {
                     VStack(spacing: 10) {
                         Spacer().frame(height: 10)
-                        NavigationLink(destination: NearPlacesView()) {
+                        NavigationLink(destination: NearbyView()) {
                             HStack {
                                 Image(systemName: "location.fill")
                                 Text("Near You")
@@ -183,18 +183,6 @@ struct HotPlaces: View {
     }
 }
 
-// MARK: - Near Places
-struct NearPlacesView: View {
-    var body: some View {
-        VStack {
-            Text("Near Places")
-                .font(.largeTitle)
-                .bold()
-            Spacer()
-        }
-        .navigationTitle("Near Places")
-    }
-}
 
 struct ExpandableGlassSearchBar: View {
     @Binding var searchText: String
